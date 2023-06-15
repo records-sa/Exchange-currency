@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="exchange-box">
     <div class="dropdown">
@@ -17,8 +19,8 @@
       </div>
     </div>
     <div class="input-area">
-      <input type="number" id="from-input" onkeyup="convert()"/>
-      <div>달러</div>
+      <input type="number" id="from-input" onkeyup="convert()" placeholder="금액을 입력하세요"/>
+      <div id="fromNumToKorea" class="korean-num">달러</div>
     </div>
   </div>
 
@@ -34,11 +36,12 @@
       </div>
     </div>
     <div class="input-area">
-      <input type="number" id="to-input"/>
-      <div>달러</div>
+      <input type="number" id="to-input" onkeyup="convert2()" placeholder="금액을 입력하세요"/>
+      <div id="toNumtoKorea" class="korean-num">달러</div>
     </div>
   </div>
 
   <script src="main.js"></script>
 </body>
 </html>
+

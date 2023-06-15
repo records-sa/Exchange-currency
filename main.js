@@ -49,18 +49,20 @@ document.querySelectorAll("#from-currency-list a").forEach((menu) => menu.addEve
   // 3. 선택된 currency 값을 변수에 저장해준다
   fromCurrency = this.textContent;
   convert();    // convert 함수를 불러와서 다른 금액을 선택할 때 마다 환전이 되도록 함
+  convert2();
 }));
 
 document.querySelectorAll("#to-currency-list a").forEach((menu) => menu.addEventListener("click", function () {
   document.getElementById("to-button").textContent = this.textContent;
   toCurrency = this.textContent;
   convert();    // convert 함수를 불러와서 다른 금액을 선택할 때 마다 환전이 되도록 함
+  convert2();
 }));
 
 
 // 5. 금액을 입력하면 환전이 되는 기능
 // 키를 입력하는 순간 > 환전이 됨 > 환전된 값이 보임
-function convert(){
+function convert() {
   // 환전에 필요한 정보: 가지고 있는 금액, 어떤 화폐인지, 어떤 화폐로 바꿀건지
   // 가지고 있는 금액 * 환율 = 환전 금액
   let amount = document.getElementById("from-input").value;
@@ -68,6 +70,41 @@ function convert(){
   let convertedAmount = amount * currencyRatio[fromCurrency][toCurrency];
 
   document.getElementById("to-input").value = convertedAmount;
+  rednderKoreanNumber(amount, convertedAmount);
 }
 
 
+// 8. 아래 박스에서 숫자를 수정해도 위 박스에 환율이 적용되는 기능
+function convert2() {
+  let amount2 = document.getElementById("to-input").value;
+  let convertedAmount2 = amount2 * currencyRatio[toCurrency][fromCurrency];
+
+  document.getElementById("from-input").value = convertedAmount2;
+  rednderKoreanNumber(convertedAmount2, amount2);
+}
+
+
+// 7. 숫자를 한국어로 보여주는 기능
+let unitWords = ["", "만", "억", "조", "경"];
+let splitUnit = 10000;
+
+function rednderKoreanNumber(from, to) {
+  document.getElementById("fromNumToKorea").textContent = readNum(from) + currencyRatio[fromCurrency].unit;
+  document.getElementById("toNumtoKorea").textContent = readNum(to) + currencyRatio[toCurrency].unit;  
+}
+function readNum(num) {
+  let resultString = "";
+  let resultArray = [];
+  for(let i = 0; i < unitWords.length; i++) {
+    let unitResult = (num % Math.pow(splitUnit, i + 1)) / Math.pow(splitUnit, i);
+    unitResult = Math.floor(unitResult);
+    if(unitResult > 0) {
+      resultArray[i] = unitResult;
+    }
+  }
+  for(let i = 0; i < resultArray.length; i++) {
+    if(!resultArray[i]) continue;
+    resultString = String(resultArray[i]) + unitWords[i] + resultString;
+  }
+  return resultString;
+}
