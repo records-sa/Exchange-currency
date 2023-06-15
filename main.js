@@ -74,6 +74,7 @@ function convert() {
 }
 
 
+<<<<<<< HEAD
 // 8. 아래 박스에서 숫자를 수정해도 위 박스에 환율이 적용되는 기능
 function convert2() {
   let amount2 = document.getElementById("to-input").value;
@@ -108,3 +109,6 @@ function readNum(num) {
   }
   return resultString;
 }
+=======
+
+>>>>>>> 402ca85cfee51b49290204a6238ae61588b61ed5

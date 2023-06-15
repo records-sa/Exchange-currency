@@ -71,6 +71,7 @@ body {
 
 .input-area input {
   width: 100%;
+<<<<<<< HEAD
   text-align: right;
 }
 
@@ -78,3 +79,7 @@ body {
   height: 100%;
   text-align: right;
 }
+=======
+}
+
+>>>>>>> 402ca85cfee51b49290204a6238ae61588b61ed5
